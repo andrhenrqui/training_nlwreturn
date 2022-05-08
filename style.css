@@ -4,25 +4,19 @@
   box-sizing: border-box;
 }
 
-
 :root{
   --primary-color: hsl(170, 100%, 26%);
   --headline: hsl(210, 11%, 15%);
   --paragraph: hsl(210, 9%, 31%);
   --brand-beige: hsl(39, 100%, 97%);
   --brand-light: hsl(148, 23%, 89%);
+  --bg-light: hsl(180, 14% 97%);
   
 
   --nav-height: 7.2rem;
 
   font-size: 62.5%;
 }
-html,  
-body{
-  width: 100%;
-  height: 100%;
-}
-
 
 .wrapper{
   width: 37.5rem;
@@ -34,20 +28,60 @@ ul{
   list-style: none;
 }
 
+section{
+  list-style: 10rem;
+}
+
+section header h4{
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 150%;
+  letter-spacing: 0.08rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;}
+
+section header h2{
+  font-size: 3rem;
+  line-height: 3.9rem;
+  color: var(--headline);
+  }
+
+section header h1{
+  font-size: 3.4rem;
+  color: var(--headline);
+  line-height: 130%;
+  margin-bottom: 2.4rem;}
+
+html{
+  scroll-behavior: smooth;
+}
+
+html,  
+body{
+  width: 100%;
+  height: 100%;
+}
+
 body{
   font-family: 'Dm Sans';
   font-size: 1.6rem;
   text-align: center;
   overflow: overlay;
+  background: var(--bg-light);
 }
 
-
-header{
-  margin-top: calc(4.1rem + var(--nav-height));
+img{
+  max-width: 100%;
 }
 
+/*=================================== NAVIGATION ===================================*/
 
-header::before{
+#home{
+  padding-top: calc(4.1rem + var(--nav-height));
+}
+
+#home::before{
   content: "";
   width: 100%;
   height: calc(108rem + var(--nav-height));
@@ -59,24 +93,7 @@ header::before{
   z-index: -1;
 }
 
-
-
-header h4{
-  font-size: 1.4rem;
-  color: var(--primary-color);
-  margin-bottom: 1.6rem;
-}
-
-
-header h1{
-  font-size: 3.4rem;
-  color: var(--headline);
-  line-height: 130%;
-  margin-bottom: 2.4rem;
-}
-
-
-header p{
+#home p{
   font-size: 1.8rem;
   line-height: 150%;
   font-weight: 400;
@@ -84,8 +101,7 @@ header p{
   margin-bottom: 3.2rem;
 }
 
-
-header button{
+#home button{
   background: var(--primary-color);
   border: none;
   border-radius: 4rem;
@@ -104,16 +120,14 @@ header button{
   gap: 1.6rem;
 }
 
-
-header img{
+#home img{
   width: 26.4rem;
   display: block;
   margin-inline: auto;
   object-position: 0 2rem;
 }
 
-
-.stats{
+#home .stats{
   width: 32.7rem;
   padding-block: 4rem;
 
@@ -127,22 +141,19 @@ header img{
   gap: 6rem;
 }
 
-
-.stat h3 {
+#home .stat h3 {
   font-size: 4.8rem;
   color: var(--headline);
   line-height: 130%;
   margin-bottom: 0.4rem;
 }
 
-
-.stat p {
+#home .stat p {
   margin: 0;
   color: var(--primary-color);
   font-size: 1.6rem;
   line-height: 150%;
 }
-
 
 nav{
   display: flex;
@@ -150,10 +161,10 @@ nav{
   padding: 1.6rem 2.4rem;
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translate(-50%);
-}
+  z-index: 100;
+  width: 100vw;
 
+}
 
 nav .wrapper{
   display: flex;
@@ -161,16 +172,13 @@ nav .wrapper{
   justify-content: space-between;
 }
 
-
 nav.scroll{
   background-color: var(--primary-color);
-  width: 100vw;
 }
 
-nav.scroll svg:nth-child(1) path{
+nav.scroll .logo path{
   fill: white;
 }
-
 
 nav.scroll button path{
   stroke: white;
@@ -181,6 +189,8 @@ nav button{
   border: none;
   cursor: pointer;
 }
+
+/*=================================== BODY ===================================*/
 
 .menu,
 .close-menu,
@@ -200,7 +210,11 @@ body.menu-expanded {
 }
 
 body.menu-expanded > :not(nav){
-  display: none;
+  visibility: hidden;
+}
+
+.menu{
+  transform: translateY(100%);
 }
 
 body.menu-expanded .menu{
@@ -211,10 +225,8 @@ body.menu-expanded .menu{
   width: 100vw;
   height: 100vh;
   padding: var(--nav-height);
-
-}
-body.menu-expanded nav{
-  position: relative;
+  transition: transform 300ms;
+  transform: translateY(0);
 }
 
 .menu ul:nth-child(1) {
@@ -268,4 +280,43 @@ body.menu-expanded .logo path{
 
 body.menu-expanded button path{
   stroke: white;
+}
+
+/*=================================== SERVICES ===================================*/
+
+#services header h2{
+  margin-bottom: 6rem;
+}
+
+#services .cards{
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+#services .card{
+  padding: 2.4rem;
+  text-align: left;
+  background: white;
+  border: 1px solid var(--brand-light);
+  border-radius: .6rem;
+}
+
+#services .card h3{
+  margin-block: 1.6rem;
+}
+
+/*=================================== ABOUT ===================================*/
+#about{
+  text-align: left;
+  background-color: var(--brand-beige);
+}
+
+#about header h2{
+  margin-bottom: 2.4rem;
+}
+
+#about .content p {
+  margin-top: 2.4rem;
+  margin-bottom: 6rem;
 }
